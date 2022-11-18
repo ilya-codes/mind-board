@@ -38,16 +38,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col">
-        <div className="flex flex-col justify-center text-center min-h-screen fixed top-0 left-0 -z-10 w-full">
-          <h2 className="text-gray-600 text-3xl font-light mx-6">
-            {!user
-              ? "Share Your Thoughts"
-              : !allPosts.length && "No Posts Yet..."}
-          </h2>
-        </div>
+      <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
+        {!user ? (
+          <div className="flex flex-col justify-center my-20">
+            <h2 className="text-3xl font-light mx-6">Share Your Thoughts</h2>
+          </div>
+        ) : (
+          !allPosts.length && (
+            <div className="flex flex-col justify-center my-20">
+              <h2 className="text-3xl font-light mx-6">No Posts Yet...</h2>
+            </div>
+          )
+        )}
         {user && allPosts.length > 0 && (
-          <h1 className="text-gray-600 pb-5 text-lg text-center sm:text-left">
+          <h1 className="pb-5 text-lg text-center sm:text-left">
             Latest Posts
           </h1>
         )}
@@ -55,7 +59,7 @@ export default function Home() {
           <Message key={post.id} {...post}>
             <hr />
             <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
-              <button className="mt-4 text-gray-600 text-sm font-bold">
+              <button className="mt-4 text-sm font-bold">
                 {post.comments?.length > 0 ? post.comments?.length : 0}{" "}
                 {post.comments?.length === 1 ? "comment" : "comments"}
               </button>

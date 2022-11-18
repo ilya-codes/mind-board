@@ -13,7 +13,7 @@ import {
 import Message from "../components/Message";
 import Link from "next/link";
 import Button from "../components/Button";
-import { GrClose } from "react-icons/gr";
+import { AiOutlineClose } from "react-icons/ai";
 import { MdEditNote } from "react-icons/md";
 
 const Dashboard = () => {
@@ -25,7 +25,7 @@ const Dashboard = () => {
     if (loading) return;
     if (!user) route.push("/auth/login");
     const collectionRef = collection(db, "posts");
-    const q = query(collectionRef, where("user", "==", user.uid));
+    const q = query(collectionRef, where("user", "==", user?.uid));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
@@ -42,43 +42,41 @@ const Dashboard = () => {
   }, [user, loading]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
       {user && !posts.length && (
-        <div className="flex flex-col justify-center text-center min-h-screen fixed top-0 left-0 -z-10 w-full">
-          <h2 className="text-gray-600 text-3xl font-light mx-6">
-            No Posts Yet...
-          </h2>
+        <div className="flex justify-center my-20">
+          <h2 className="text-3xl font-light mx-6">No Posts Yet...</h2>
         </div>
       )}
       {posts.length > 0 && (
-        <h1 className="text-gray-600 pb-5 text-lg text-center sm:text-left">
-          Your Posts
-        </h1>
+        <h1 className="pb-5 text-lg text-center sm:text-left">Your Posts</h1>
       )}
 
       {posts.map((post) => (
         <Message key={post.id} {...post}>
           <span
             onClick={() => deletePost(post.id)}
-            className="absolute top-8 right-8 cursor-pointer text-lg"
+            className="absolute top-8 right-8 cursor-pointer text-2xl"
           >
-            <GrClose />
+            <AiOutlineClose />
           </span>
-          <div className="flex gap-4 pb-5 justify-end">
+          <hr />
+          <div className="flex mt-5 justify-between content-center">
+            <Link
+              className="flex content-center"
+              href={{ pathname: `/${post.id}`, query: { ...post } }}
+            >
+              <button className="text-sm font-bold">
+                {post.comments?.length > 0 ? post.comments?.length : 0}{" "}
+                {post.comments?.length === 1 ? "comment" : "comments"}
+              </button>
+            </Link>
             <Link href={{ pathname: "/post", query: post }}>
               <Button>
                 <MdEditNote className="self-center text-xl mr-1" /> Edit
               </Button>
             </Link>
           </div>
-
-          <hr />
-          <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
-            <button className="mt-4 text-gray-600 text-sm font-bold">
-              {post.comments?.length > 0 ? post.comments?.length : 0}{" "}
-              {post.comments?.length === 1 ? "comment" : "comments"}
-            </button>
-          </Link>
         </Message>
       ))}
     </div>

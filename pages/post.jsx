@@ -73,20 +73,20 @@ const Post = () => {
   }, [user, loading]);
 
   return (
-    <div className="my-8 p-8 shadow-md rounded-lg max-w-md mx-auto bg-white sm:my-20">
+    <div className="my-8 p-8 shadow-md rounded-lg max-w-md mx-auto text-gray-600 dark:text-slate-300 bg-white dark:bg-slate-800 sm:my-20">
       <form onSubmit={submitPost}>
-        <h1 className="text-xl font-light text-gray-600">
+        <h1 className="text-xl font-light">
           {post.hasOwnProperty("id") ? "Edit your post" : "Create a new post"}
         </h1>
         <div className="py-2">
-          <h3 className="font-light text-gray-600 py-3">Description</h3>
+          <h3 className="font-light py-3">Description</h3>
           <textarea
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className=" bg-gray-700 h-48 w-full resize-none text-white rounded-lg p-2 text-sm outline-none"
+            className=" bg-gray-700 dark:bg-gray-900 dark:border dark:border-gray-400 h-48 w-full resize-none text-white rounded-lg p-2 text-sm outline-none"
           ></textarea>
           <p
-            className={`text-gray-600 font-medium text-sm py-3 ${
+            className={`font-medium text-sm py-3 ${
               post.description.length > 300 && "text-red-600"
             }`}
           >

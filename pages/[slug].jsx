@@ -58,14 +58,14 @@ const Details = () => {
   return (
     <div>
       <Message {...routeData}></Message>
-      <div className="pt-5">
+      <div className="pt-5 text-gray-600 dark:text-slate-300">
         <form onSubmit={sendComment} className="flex pb-5">
           <input
             onChange={(e) => setMessage(e.target.value)}
             type="text"
             value={message}
             placeholder="Send a message"
-            className=" bg-gray-600 w-full px-4 py-2 text-white outline-none rounded-lg rounded-r-none"
+            className=" bg-gray-600 w-full px-4 py-2 text-white outline-none dark:bg-gray-900 dark:border dark:border-r-0 dark:border-gray-400 rounded-lg rounded-r-none"
           />
           <Button group>
             <BsTextRight className=" self-center mr-1" />
@@ -73,12 +73,12 @@ const Details = () => {
           </Button>
         </form>
 
-        <div className=" py-5 ">
+        <div className="py-5">
           <h2 className="text-lg">Comments</h2>
           <div className="flex flex-col-reverse">
             {allMessages?.map((message) => (
               <div
-                className=" bg-white p-8 mt-5 shadow-md rounded-lg"
+                className=" bg-white dark:bg-slate-800 p-8 mt-5 shadow-md rounded-lg"
                 key={message.time}
               >
                 <div className=" flex items-center gap-2 mb-4">
