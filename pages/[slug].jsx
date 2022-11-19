@@ -4,7 +4,7 @@ import { BsTextRight } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { auth, db } from "../utils/firebase";
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   arrayUnion,
   doc,
@@ -12,12 +12,16 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
+import AppContext from "../components/Context";
 
 const Details = () => {
   const router = useRouter();
   const routeData = router.query;
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
+
+  const themeContext = useContext(AppContext);
+  const isJapanese = themeContext.isJapanese;
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -64,17 +68,21 @@ const Details = () => {
             onChange={(e) => setMessage(e.target.value)}
             type="text"
             value={message}
-            placeholder="Send a message"
+            placeholder={`${
+              isJapanese ? "メッセージを送る" : "Send a message"
+            }`}
             className=" bg-gray-600 w-full px-4 py-2 text-white outline-none dark:bg-gray-900 dark:border dark:border-r-0 dark:border-gray-400 rounded-lg rounded-r-none"
           />
           <Button group>
-            <BsTextRight className=" self-center mr-1" />
-            <span className="self-center">Send</span>
+            <BsTextRight className="self-center mr-1" />
+            <span className="self-center w-10">
+              {isJapanese ? "送信" : "Send"}
+            </span>
           </Button>
         </form>
 
         <div className="py-5">
-          <h2 className="text-lg">Comments</h2>
+          <h2 className="text-lg">{isJapanese ? "コメント" : "Comments"}</h2>
           <div className="flex flex-col-reverse">
             {allMessages?.map((message) => (
               <div

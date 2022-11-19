@@ -5,7 +5,7 @@ const Button = ({ children, onClick, type, full, group }) => {
       type={type}
       className={`${full && "w-full"} ${
         group && "rounded-l-none"
-      } flex justify-center font-medium bg-transparent border border-gray-400 hover:bg-gray-400 text-gray-600 dark:dark:text-slate-300  hover:text-white py-2 px-4 rounded-md text-sm transition ease duration-100`}
+      } flex justify-center font-medium bg-transparent border border-gray-400 hover:bg-gray-400 text-gray-600 dark:text-slate-300  hover:text-white py-2 px-4 rounded-md text-sm transition ease duration-100`}
     >
       {children}
     </button>

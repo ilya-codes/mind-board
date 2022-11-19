@@ -40,13 +40,32 @@ export default function Home() {
 
       <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
         {!user ? (
-          <div className="flex flex-col justify-center my-20">
-            <h2 className="text-3xl font-light mx-6">Share Your Thoughts</h2>
+          <div className="grid gap-20 grid-cols-1 grid-rows-3 sm:grid-cols-2 sm:grid-rows-2 sm:mt-20 text-center font-light">
+            <div className="flex flex-col justify-between sm:col-span-2 border border-gray-400 rounded-lg p-5">
+              <h2 className="text-3xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+                Share Your Thoughts
+              </h2>
+              <p>Post messages anyone can see.</p>
+            </div>
+            <div className="flex flex-col justify-between border border-gray-400 rounded-lg p-5">
+              <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+                Read And Comment
+              </h3>
+              <p>Comment posts you like.</p>
+            </div>
+            <div className="flex flex-col justify-between border border-gray-400 rounded-lg p-5">
+              <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+                Edit And Delete
+              </h3>
+              <p>Use Dashboard to edit and delete your messages.</p>
+            </div>
           </div>
         ) : (
           !allPosts.length && (
             <div className="flex flex-col justify-center my-20">
-              <h2 className="text-3xl font-light mx-6">No Posts Yet...</h2>
+              <h2 className="text-3xl text-center font-light mx-6">
+                No Posts Yet...
+              </h2>
             </div>
           )
         )}

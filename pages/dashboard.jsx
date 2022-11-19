@@ -45,7 +45,9 @@ const Dashboard = () => {
     <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
       {user && !posts.length && (
         <div className="flex justify-center my-20">
-          <h2 className="text-3xl font-light mx-6">No Posts Yet...</h2>
+          <h2 className="text-3xl text-center font-light mx-6">
+            No Posts Yet...
+          </h2>
         </div>
       )}
       {posts.length > 0 && (
