@@ -1,7 +1,7 @@
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   collection,
   deleteDoc,
@@ -15,11 +15,15 @@ import Link from "next/link";
 import Button from "../components/Button";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdEditNote } from "react-icons/md";
+import AppContext from "../components/Context";
 
 const Dashboard = () => {
   const route = useRouter();
   const [user, loading] = useAuthState(auth);
   const [posts, setPosts] = useState([]);
+
+  const themeContext = useContext(AppContext);
+  const isJapanese = themeContext.isJapanese;
 
   const getData = async () => {
     if (loading) return;
@@ -46,12 +50,14 @@ const Dashboard = () => {
       {user && !posts.length && (
         <div className="flex justify-center my-20">
           <h2 className="text-3xl text-center font-light mx-6">
-            No Posts Yet...
+            {isJapanese ? "メッセージがありません" : " No Posts Yet..."}
           </h2>
         </div>
       )}
       {posts.length > 0 && (
-        <h1 className="pb-5 text-lg text-center sm:text-left">Your Posts</h1>
+        <h1 className="pb-5 text-lg text-center sm:text-left">
+          {isJapanese ? "あなたのメッセージ" : "Your Posts"}
+        </h1>
       )}
 
       {posts.map((post) => (
@@ -70,12 +76,17 @@ const Dashboard = () => {
             >
               <button className="text-sm font-bold">
                 {post.comments?.length > 0 ? post.comments?.length : 0}{" "}
-                {post.comments?.length === 1 ? "comment" : "comments"}
+                {isJapanese
+                  ? "コメント"
+                  : post.comments?.length === 1
+                  ? "comment"
+                  : "comments"}
               </button>
             </Link>
             <Link href={{ pathname: "/post", query: post }}>
               <Button>
-                <MdEditNote className="self-center text-xl mr-1" /> Edit
+                <MdEditNote className="self-center text-xl mr-1" />
+                {isJapanese ? "編集" : "Edit"}
               </Button>
             </Link>
           </div>
