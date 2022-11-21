@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Menu from "./Menu";
 import { useContext, useState } from "react";
 import AppContext from "../components/Context";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 const Nav = () => {
   const [user, loading] = useAuthState(auth);
@@ -15,8 +16,8 @@ const Nav = () => {
   const route = useRouter();
 
   const singOutClear = () => {
-    route.push("/auth/login");
     auth.signOut();
+    route.push("/auth/login");
   };
 
   const handleMenu = (e) => {
@@ -27,6 +28,8 @@ const Nav = () => {
 
   const themeContext = useContext(AppContext);
   const isJapanese = themeContext.isJapanese;
+  const darkHandler = themeContext.darkHandler;
+  const dark = themeContext.dark;
 
   if (loading) return;
 
@@ -48,7 +51,7 @@ const Nav = () => {
           </Link>
         )}
         {user && (
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-row flex-wrap items-center gap-3">
             <Link href="/post">
               <Button>{isJapanese ? "メッセージ" : "Post a message"}</Button>
             </Link>
@@ -70,6 +73,22 @@ const Nav = () => {
         )}
       </ul>
       <Menu open={menuOpen} handleMenu={handleMenu} />
+      <button
+        onClick={darkHandler}
+        className={`${
+          user && "hidden"
+        } absolute top-10 right-5 sm:top-12 sm:right-28 w-10 h-6 flex self-end justify-${
+          dark ? "end" : "start"
+        } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 self-center`}
+      >
+        <div className="w-6 h-6 rounded-full flex justify-center items-center bg-slate-700">
+          {dark ? (
+            <BsMoonStarsFill className="text-xs text-yellow-300" />
+          ) : (
+            <BsFillSunFill className="text-xs  text-yellow-300" />
+          )}
+        </div>
+      </button>
     </nav>
   );
 };

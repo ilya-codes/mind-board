@@ -86,7 +86,7 @@ const Details = () => {
           <div className="flex flex-col-reverse">
             {allMessages?.map((message) => (
               <div
-                className=" bg-white dark:bg-slate-800 p-8 mt-5 shadow-md rounded-lg"
+                className="border border-gray-400 dark:border-gray-600 bg-white dark:bg-slate-800 p-8 mt-5 shadow-md rounded-lg"
                 key={message.time}
               >
                 <div className=" flex items-center gap-2 mb-4">

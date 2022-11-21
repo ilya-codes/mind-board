@@ -46,33 +46,33 @@ export default function Home() {
       <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
         {!user ? (
           <div className="grid gap-5 sm:gap-20 grid-cols-1 grid-rows-3 sm:grid-cols-2 sm:grid-rows-2 sm:mt-20 text-center font-light">
-            <div className="flex flex-col justify-between sm:col-span-2 border border-gray-400 rounded-lg p-5">
+            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between sm:col-span-2 border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
               <h2 className="text-3xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "考えを共有しよう" : "Share Your Thoughts"}
               </h2>
-              <p>
+              <p className="dark:text-slate-300">
                 {isJapanese
-                  ? "誰でも見えるメッセージを送信しよう。"
+                  ? "誰でも見えるメッセージを送信する。"
                   : "Post messages anyone can see."}
               </p>
             </div>
-            <div className="flex flex-col justify-between border border-gray-400 rounded-lg p-5">
+            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
               <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "読めるもコメントもできる" : "Read And Comment"}
               </h3>
-              <p>
+              <p className="dark:text-slate-300">
                 {isJapanese
                   ? "好きなメッセジーにコメントする"
                   : "Comment posts you like."}
               </p>
             </div>
-            <div className="flex flex-col justify-between border border-gray-400 rounded-lg p-5">
+            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
               <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "編集も消去も" : "Edit And Delete"}
               </h3>
-              <p>
+              <p className="dark:text-slate-300">
                 {isJapanese
-                  ? "ダッシュボードを使用して、メッセージを編集および削除しよう。"
+                  ? "ダッシュボードを使用して、メッセージを編集および削除する。"
                   : "Use Dashboard to edit and delete your messages."}
               </p>
             </div>
@@ -93,7 +93,7 @@ export default function Home() {
         )}
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
-            <hr />
+            <hr className="border-gray-400 dark:border-gray-600" />
             <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
               <button className="mt-4 text-sm font-bold">
                 {post.comments?.length > 0 ? post.comments?.length : 0}{" "}

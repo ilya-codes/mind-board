@@ -77,7 +77,7 @@ const Post = () => {
   }, [user, loading]);
 
   return (
-    <div className="my-8 p-8 shadow-md rounded-lg max-w-md mx-auto text-gray-600 dark:text-slate-300 bg-white dark:bg-slate-800 sm:my-20">
+    <div className="my-8 p-8 border border-gray-400 dark:border-gray-600 shadow-md rounded-lg max-w-md mx-auto text-gray-600 dark:text-slate-300 bg-white dark:bg-slate-800 sm:my-20">
       <form onSubmit={submitPost}>
         <h1 className="text-xl font-light">
           {post.hasOwnProperty("id")
@@ -91,7 +91,7 @@ const Post = () => {
           <textarea
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className=" bg-gray-700 dark:bg-gray-900 dark:border dark:border-gray-400 h-48 w-full resize-none text-white rounded-lg p-2 text-sm outline-none"
+            className=" bg-gray-700 dark:bg-gray-900 dark:border dark:border-gray-600 h-48 w-full resize-none text-white rounded-lg p-2 text-sm outline-none"
           ></textarea>
           <p
             className={`font-medium text-sm py-3 ${

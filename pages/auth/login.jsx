@@ -37,7 +37,7 @@ function Login() {
   const isJapanese = themeContext.isJapanese;
 
   return (
-    <div className="shadow-md mt-10 sm:mt-32 p-10 bg-white text-gray-600 dark:text-slate-300 dark:bg-slate-800 rounded-lg">
+    <div className=" border border-gray-400 dark:border-gray-600 shadow-md mt-10 sm:mt-32 p-10 bg-white text-gray-600 dark:text-slate-300 dark:bg-slate-800 rounded-lg">
       <h2 className="text-2xl font-medium">
         {isJapanese ? "今すぐ参加" : "Join Now"}
       </h2>

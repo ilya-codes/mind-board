@@ -36,7 +36,7 @@ const Menu = ({ open, handleMenu }) => {
               onClick={handleMenu}
               href="/dashboard"
               id="dashlink"
-              className="w-full mb-5 flex self-end justify-end border border-gray-400 dark:text-slate-300 hover:text-white hover:bg-gray-400 dark:hover:bg-slate-800 rounded-3xl overflow-hidden"
+              className="w-full mb-8 flex self-end justify-end border border-gray-400 dark:text-slate-300 hover:text-white hover:bg-gray-400 dark:hover:bg-slate-800 rounded-3xl overflow-hidden"
             >
               <span className="flex-1 text-center my-auto">
                 {isJapanese ? "ダッシュボード" : "Dashboard"}
@@ -45,32 +45,34 @@ const Menu = ({ open, handleMenu }) => {
                 <img src={user?.photoURL} alt="" referrerPolicy="no-referrer" />
               </div>
             </Link>
-            <button
-              onClick={darkHandler}
-              className={`w-20 h-10 mb-5 flex self-end justify-${
-                dark ? "end" : "start"
-              } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 `}
-            >
-              <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800">
-                {dark ? (
-                  <BsMoonStarsFill className="text-yellow-300" />
-                ) : (
-                  <BsFillSunFill className="text-lg text-yellow-300" />
-                )}
-              </div>
-            </button>
-            <button
-              onClick={langHandler}
-              className={`w-20 h-10 flex self-end justify-${
-                isJapanese ? "end" : "start"
-              } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400`}
-            >
-              <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800 ">
-                <span className="font-medium text-white dark:text-slate-300">
-                  {isJapanese ? "Jp" : "Eng"}
-                </span>
-              </div>
-            </button>
+            <div className="flex justify-end gap-8">
+              <button
+                onClick={darkHandler}
+                className={`w-20 h-10 flex self-end justify-${
+                  dark ? "end" : "start"
+                } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 self-center`}
+              >
+                <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800">
+                  {dark ? (
+                    <BsMoonStarsFill className="text-yellow-300" />
+                  ) : (
+                    <BsFillSunFill className="text-lg text-yellow-300" />
+                  )}
+                </div>
+              </button>
+              <button
+                onClick={langHandler}
+                className={`w-20 h-10 flex self-end justify-${
+                  isJapanese ? "end" : "start"
+                } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 self-center`}
+              >
+                <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800 ">
+                  <span className="font-medium text-white dark:text-slate-300">
+                    {isJapanese ? "Jp" : "Eng"}
+                  </span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
