@@ -28,8 +28,8 @@ export default function Home() {
 
   if (loading)
     return (
-      <div className="flex flex-col justify-center text-center min-h-screen fixed top-0 left-0 -z-10 w-full">
-        <h2 className="text-gray-600 text-3xl font-light mx-6">
+      <div className="fixed top-0 left-0 -z-10 flex min-h-screen w-full flex-col justify-center text-center">
+        <h2 className="mx-6 text-3xl font-light text-gray-600">
           {isJapanese ? "読み込み中" : "Loading..."}
         </h2>
       </div>
@@ -45,9 +45,9 @@ export default function Home() {
 
       <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
         {!user ? (
-          <div className="grid gap-5 sm:gap-20 grid-cols-1 grid-rows-3 sm:grid-cols-2 sm:grid-rows-2 sm:mt-20 text-center font-light">
-            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between sm:col-span-2 border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
-              <h2 className="text-3xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+          <div className="grid grid-cols-1 grid-rows-3 gap-5 text-center font-light sm:mt-20 sm:grid-cols-2 sm:grid-rows-2 sm:gap-20">
+            <div className="flex flex-col justify-between rounded-lg border border-gray-400 bg-white p-5 shadow-lg dark:border-gray-600 dark:bg-slate-800 sm:col-span-2">
+              <h2 className="bg-gradient-to-br from-gray-700 to-gray-400 bg-clip-text pb-3 text-3xl font-medium text-transparent dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "考えを共有しよう" : "Share Your Thoughts"}
               </h2>
               <p className="dark:text-slate-300">
@@ -56,8 +56,8 @@ export default function Home() {
                   : "Post messages anyone can see."}
               </p>
             </div>
-            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
-              <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+            <div className="flex flex-col justify-between rounded-lg border border-gray-400 bg-white p-5 shadow-lg dark:border-gray-600 dark:bg-slate-800">
+              <h3 className="bg-gradient-to-br from-gray-700 to-gray-400 bg-clip-text pb-3 text-2xl font-medium text-transparent dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "読めるもコメントもできる" : "Read And Comment"}
               </h3>
               <p className="dark:text-slate-300">
@@ -66,8 +66,8 @@ export default function Home() {
                   : "Comment posts you like."}
               </p>
             </div>
-            <div className="bg-white dark:bg-slate-800 flex flex-col justify-between border border-gray-400 dark:border-gray-600 shadow-lg rounded-lg p-5">
-              <h3 className="text-2xl pb-3 font-medium text-transparent bg-clip-text bg-gradient-to-br from-gray-700 to-gray-400 dark:from-slate-300 dark:to-slate-600">
+            <div className="flex flex-col justify-between rounded-lg border border-gray-400 bg-white p-5 shadow-lg dark:border-gray-600 dark:bg-slate-800">
+              <h3 className="bg-gradient-to-br from-gray-700 to-gray-400 bg-clip-text pb-3 text-2xl font-medium text-transparent dark:from-slate-300 dark:to-slate-600">
                 {isJapanese ? "編集も消去も" : "Edit And Delete"}
               </h3>
               <p className="dark:text-slate-300">
@@ -79,15 +79,15 @@ export default function Home() {
           </div>
         ) : (
           !allPosts.length && (
-            <div className="flex flex-col justify-center my-20">
-              <h2 className="text-3xl text-center font-light mx-6">
+            <div className="my-20 flex flex-col justify-center">
+              <h2 className="mx-6 text-center text-3xl font-light">
                 {isJapanese ? "メッセージがありません" : " No Posts Yet..."}
               </h2>
             </div>
           )
         )}
         {user && allPosts.length > 0 && (
-          <h1 className="pb-5 text-lg text-center sm:text-left">
+          <h1 className="pb-5 text-center text-lg sm:text-left">
             {isJapanese ? "最新のメッセージ" : "Latest Posts"}
           </h1>
         )}

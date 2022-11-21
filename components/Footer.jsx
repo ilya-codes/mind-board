@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-600 text-gray-600 dark:text-slate-300 absolute bottom-0 w-full py-3 px-1 flex justify-between items-center">
+    <footer className="absolute bottom-0 flex w-full items-center justify-between border-t border-gray-600 py-5 px-1 text-gray-600 dark:text-slate-300">
       <span>Copyright &copy; {new Date().getFullYear()}</span>
       <a
         className="flex items-center"

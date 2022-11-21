@@ -77,7 +77,7 @@ const Post = () => {
   }, [user, loading]);
 
   return (
-    <div className="my-8 p-8 border border-gray-400 dark:border-gray-600 shadow-md rounded-lg max-w-md mx-auto text-gray-600 dark:text-slate-300 bg-white dark:bg-slate-800 sm:my-20">
+    <div className="my-8 mx-auto max-w-md rounded-lg border border-gray-400 bg-white p-8 text-gray-600 shadow-md dark:border-gray-600 dark:bg-slate-800 dark:text-slate-300 sm:my-20">
       <form onSubmit={submitPost}>
         <h1 className="text-xl font-light">
           {post.hasOwnProperty("id")
@@ -85,16 +85,16 @@ const Post = () => {
             : `${isJapanese ? "メッセージを送信" : "Create a new post"}`}
         </h1>
         <div className="py-2">
-          <h3 className="font-light py-3">
+          <h3 className="py-3 font-light">
             {isJapanese ? "説明" : "Description"}
           </h3>
           <textarea
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className=" bg-gray-700 dark:bg-gray-900 dark:border dark:border-gray-600 h-48 w-full resize-none text-white rounded-lg p-2 text-sm outline-none"
+            className="h-48 w-full resize-none rounded-lg bg-gray-700 p-2 text-sm text-white outline-none dark:border dark:border-gray-600 dark:bg-gray-900"
           ></textarea>
           <p
-            className={`font-medium text-sm py-3 ${
+            className={`py-3 text-sm font-medium ${
               post.description.length > 300 && "text-red-600"
             }`}
           >

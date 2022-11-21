@@ -71,11 +71,11 @@ const Details = () => {
             placeholder={`${
               isJapanese ? "メッセージを送る" : "Send a message"
             }`}
-            className=" bg-gray-600 w-full px-4 py-2 text-white outline-none dark:bg-gray-900 dark:border dark:border-r-0 dark:border-gray-400 rounded-lg rounded-r-none"
+            className=" w-full rounded-lg rounded-r-none bg-gray-600 px-4 py-2 text-white outline-none dark:border dark:border-r-0 dark:border-gray-400 dark:bg-gray-900"
           />
           <Button group>
-            <BsTextRight className="self-center mr-1" />
-            <span className="self-center w-10">
+            <BsTextRight className="mr-1 self-center" />
+            <span className="w-10 self-center">
               {isJapanese ? "送信" : "Send"}
             </span>
           </Button>
@@ -86,11 +86,11 @@ const Details = () => {
           <div className="flex flex-col-reverse">
             {allMessages?.map((message) => (
               <div
-                className="border border-gray-400 dark:border-gray-600 bg-white dark:bg-slate-800 p-8 mt-5 shadow-md rounded-lg"
+                className="mt-5 rounded-lg border border-gray-400 bg-white p-8 shadow-md dark:border-gray-600 dark:bg-slate-800"
                 key={message.time}
               >
-                <div className=" flex items-center gap-2 mb-4">
-                  <div className="w-6 h-6 bg-gray-600  rounded-full overflow-hidden">
+                <div className=" mb-4 flex items-center gap-2">
+                  <div className="h-6 w-6 overflow-hidden  rounded-full bg-gray-600">
                     <img src={message.avatar} alt="user-icon" />
                   </div>
 

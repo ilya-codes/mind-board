@@ -1,14 +1,14 @@
 function Message({ children, avatar, username, description }) {
   return (
-    <div className="border border-gray-400 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-600 dark:text-slate-300 p-8 my-5 shadow-md rounded-lg relative transition-all delay-50">
+    <div className="delay-50 relative my-5 rounded-lg border border-gray-400 bg-white p-8 text-gray-600 shadow-md transition-all dark:border-gray-600 dark:bg-slate-800 dark:text-slate-300">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 shrink-0 bg-gray-600 rounded-full overflow-hidden">
+        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-600">
           <img src={avatar} alt="user-icon" />
         </div>
-        <h3 className="font-bold text-base">{username}</h3>
+        <h3 className="text-base font-bold">{username}</h3>
       </div>
       <div className="py-5 ">
-        <p className="font-light text-base">{description}</p>
+        <p className="text-base font-light">{description}</p>
       </div>
       {children}
     </div>

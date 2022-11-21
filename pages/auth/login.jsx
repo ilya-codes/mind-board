@@ -37,24 +37,24 @@ function Login() {
   const isJapanese = themeContext.isJapanese;
 
   return (
-    <div className=" border border-gray-400 dark:border-gray-600 shadow-md mt-10 sm:mt-32 p-10 bg-white text-gray-600 dark:text-slate-300 dark:bg-slate-800 rounded-lg">
+    <div className=" mt-10 rounded-lg border border-gray-400 bg-white p-10 text-gray-600 shadow-md dark:border-gray-600 dark:bg-slate-800 dark:text-slate-300 sm:mt-32">
       <h2 className="text-2xl font-medium">
         {isJapanese ? "今すぐ参加" : "Join Now"}
       </h2>
-      <div className="py-4 flex flex-col gap-3">
+      <div className="flex flex-col gap-3 py-4">
         <h3 className="py-2">
           {isJapanese ? "SNSアカウントでログイン" : "Choose sign in method"}
         </h3>
         <button
           onClick={GoogleLogin}
-          className="text-white bg-gray-600 w-full font-medium rounded-lg flex align-middle p-4 gap-2"
+          className="flex w-full gap-2 rounded-lg bg-gray-600 p-4 align-middle font-medium text-white"
         >
           <FcGoogle className="text-2xl" />
           {isJapanese ? "Google で続ける" : "Sign in with Google"}
         </button>
         <button
           onClick={GithubLogin}
-          className="text-white bg-gray-600 w-full font-medium rounded-lg flex align-middle p-4 gap-2"
+          className="flex w-full gap-2 rounded-lg bg-gray-600 p-4 align-middle font-medium text-white"
         >
           <FaGithub className="text-2xl" />
           {isJapanese ? "Github で続ける" : "Sign in with Github"}

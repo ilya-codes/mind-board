@@ -24,35 +24,35 @@ const Menu = ({ open, handleMenu }) => {
       onClick={handleMenu}
       className={` ${
         !open && "hidden"
-      } bg-gray-900/80 fixed left-0 top-0 min-h-screen w-full`}
+      } fixed left-0 top-0 min-h-screen w-full bg-gray-900/80`}
     >
-      <div className="relative mx-6 md:max-w-3xl md:mx-auto">
+      <div className="relative mx-6 md:mx-auto md:max-w-3xl">
         <div
           id="menu"
-          className="absolute top-0 right-0 w-full sm:w-1/2 bg-white dark:bg-slate-700 text-gray-600 dark:text-slate-300 p-8 shadow-lg rounded-b-lg"
+          className="absolute top-0 right-0 w-full rounded-b-lg bg-white p-8 text-gray-600 shadow-lg dark:bg-slate-700 dark:text-slate-300 sm:w-1/2"
         >
           <div className="flex flex-col text-right">
             <Link
               onClick={handleMenu}
               href="/dashboard"
               id="dashlink"
-              className="w-full mb-8 flex self-end justify-end border border-gray-400 dark:text-slate-300 hover:text-white hover:bg-gray-400 dark:hover:bg-slate-800 rounded-3xl overflow-hidden"
+              className="mb-8 flex w-full justify-end self-end overflow-hidden rounded-3xl border border-gray-400 hover:bg-gray-400 hover:text-white dark:text-slate-300 dark:hover:bg-slate-800"
             >
-              <span className="flex-1 text-center my-auto">
+              <span className="my-auto flex-1 text-center">
                 {isJapanese ? "ダッシュボード" : "Dashboard"}
               </span>
-              <div className="w-10 h-10 bg-gray-600 rounded-full cursor-pointer overflow-hidden">
+              <div className="h-10 w-10 cursor-pointer overflow-hidden rounded-full bg-gray-600">
                 <img src={user?.photoURL} alt="" referrerPolicy="no-referrer" />
               </div>
             </Link>
             <div className="flex justify-end gap-8">
               <button
                 onClick={darkHandler}
-                className={`w-20 h-10 flex self-end justify-${
+                className={`flex h-10 w-20 self-end justify-${
                   dark ? "end" : "start"
-                } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 self-center`}
+                } items-center self-center overflow-hidden rounded-3xl border border-gray-400 hover:bg-gray-400`}
               >
-                <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800">
                   {dark ? (
                     <BsMoonStarsFill className="text-yellow-300" />
                   ) : (
@@ -62,11 +62,11 @@ const Menu = ({ open, handleMenu }) => {
               </button>
               <button
                 onClick={langHandler}
-                className={`w-20 h-10 flex self-end justify-${
+                className={`flex h-10 w-20 self-end justify-${
                   isJapanese ? "end" : "start"
-                } items-center border border-gray-400 rounded-3xl overflow-hidden hover:bg-gray-400 self-center`}
+                } items-center self-center overflow-hidden rounded-3xl border border-gray-400 hover:bg-gray-400`}
               >
-                <div className="w-10 h-10 rounded-full flex justify-center items-center bg-slate-800 ">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 ">
                   <span className="font-medium text-white dark:text-slate-300">
                     {isJapanese ? "Jp" : "Eng"}
                   </span>

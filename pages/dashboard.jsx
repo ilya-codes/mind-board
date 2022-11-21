@@ -48,14 +48,14 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col text-gray-600 dark:dark:text-slate-300">
       {user && !posts.length && (
-        <div className="flex justify-center my-20">
-          <h2 className="text-3xl text-center font-light mx-6">
+        <div className="my-20 flex justify-center">
+          <h2 className="mx-6 text-center text-3xl font-light">
             {isJapanese ? "メッセージがありません" : " No Posts Yet..."}
           </h2>
         </div>
       )}
       {posts.length > 0 && (
-        <h1 className="pb-5 text-lg text-center sm:text-left">
+        <h1 className="pb-5 text-center text-lg sm:text-left">
           {isJapanese ? "あなたのメッセージ" : "Your Posts"}
         </h1>
       )}
@@ -69,7 +69,7 @@ const Dashboard = () => {
             <AiOutlineClose />
           </span>
           <hr />
-          <div className="flex mt-5 justify-between content-center">
+          <div className="mt-5 flex content-center justify-between">
             <Link
               className="flex content-center"
               href={{ pathname: `/${post.id}`, query: { ...post } }}
@@ -85,7 +85,7 @@ const Dashboard = () => {
             </Link>
             <Link href={{ pathname: "/post", query: post }}>
               <Button>
-                <MdEditNote className="self-center text-xl mr-1" />
+                <MdEditNote className="mr-1 self-center text-xl" />
                 {isJapanese ? "編集" : "Edit"}
               </Button>
             </Link>
