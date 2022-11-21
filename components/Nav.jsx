@@ -58,7 +58,7 @@ const Nav = () => {
               onClick={darkHandler}
               className={`ml-8 flex h-6 w-10 sm:ml-0 sm:mr-8 justify-${
                 dark ? "end" : "start"
-              } items-center self-center overflow-hidden rounded-3xl border border-gray-400 hover:bg-gray-400`}
+              } items-center self-center overflow-hidden rounded-3xl border border-gray-400 hover:bg-gray-400 `}
             >
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-700">
                 {dark ? (
@@ -81,9 +81,9 @@ const Nav = () => {
 
             <div
               onClick={handleMenu}
-              className="flex cursor-pointer justify-end self-end overflow-hidden rounded-l-lg rounded-r-3xl border border-gray-400 hover:bg-gray-400 hover:text-white dark:text-slate-300 dark:hover:bg-slate-400"
+              className="flex cursor-pointer justify-end self-end overflow-hidden rounded-l-lg rounded-r-3xl border border-gray-400 text-gray-600 hover:bg-gray-400 hover:text-white dark:text-slate-300 dark:hover:bg-slate-400"
             >
-              <span className="mx-2 self-center">
+              <span className="mx-2 self-center ">
                 {isJapanese ? "メニュー" : "Menu"}
               </span>
               <div className="h-9 w-9 overflow-hidden rounded-full bg-gray-600">

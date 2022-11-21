@@ -29,9 +29,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (user) {
-      getPosts();
-    }
+    getPosts();
   }, []);
 
   if (loading)

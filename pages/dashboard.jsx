@@ -46,9 +46,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      getData();
-    }
+    getData();
   }, [user, loading]);
 
   return (
