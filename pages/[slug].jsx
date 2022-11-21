@@ -25,33 +25,41 @@ const Details = () => {
 
   const sendComment = async (e) => {
     e.preventDefault();
-    if (!auth.currentUser) return router.push("./auth/login");
+    try {
+      if (!auth.currentUser) return router.push("./auth/login");
 
-    if (!message) {
-      toast.error("Message Is Empty!", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
+      if (!message) {
+        toast.error("Message Is Empty!", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+        return;
+      }
+      const docRef = doc(db, "posts", routeData.id);
+      await updateDoc(docRef, {
+        comments: arrayUnion({
+          message,
+          avatar: auth.currentUser.photoURL,
+          userName: auth.currentUser.displayName,
+          time: Timestamp.now(),
+        }),
       });
-      return;
+      setMessage("");
+    } catch (error) {
+      console.log(error);
     }
-    const docRef = doc(db, "posts", routeData.id);
-    await updateDoc(docRef, {
-      comments: arrayUnion({
-        message,
-        avatar: auth.currentUser.photoURL,
-        userName: auth.currentUser.displayName,
-        time: Timestamp.now(),
-      }),
-    });
-    setMessage("");
   };
 
   const getComments = async () => {
-    const docRef = doc(db, "posts", routeData.id);
-    const unsubscribe = onSnapshot(docRef, (snapshot) => {
-      setAllMessages(snapshot.data()?.comments);
-    });
-    return unsubscribe;
+    try {
+      const docRef = doc(db, "posts", routeData.id);
+      const unsubscribe = onSnapshot(docRef, (snapshot) => {
+        setAllMessages(snapshot.data()?.comments);
+      });
+      return unsubscribe;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

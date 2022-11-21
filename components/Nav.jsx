@@ -16,8 +16,12 @@ const Nav = () => {
   const route = useRouter();
 
   const singOutClear = () => {
-    auth.signOut();
-    route.push("/auth/login");
+    try {
+      auth.signOut();
+      route.push("/auth/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMenu = (e) => {

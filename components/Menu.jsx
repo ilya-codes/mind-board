@@ -1,17 +1,12 @@
 import Link from "next/link";
 import { auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Button from "./Button";
-import { useRouter } from "next/router";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AppContext from "../components/Context";
 
 const Menu = ({ open, handleMenu }) => {
   const [user, loading] = useAuthState(auth);
-
-  const route = useRouter();
-
   const themeContext = useContext(AppContext);
   const darkHandler = themeContext.darkHandler;
   const dark = themeContext.dark;

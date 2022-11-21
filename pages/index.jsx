@@ -14,16 +14,24 @@ export default function Home() {
   const isJapanese = themeContext.isJapanese;
 
   const getPosts = async () => {
-    const collectionRef = collection(db, "posts");
-    const q = query(collectionRef, orderBy("timestamp", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      setAllPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-    return unsubscribe;
+    try {
+      const collectionRef = collection(db, "posts");
+      const q = query(collectionRef, orderBy("timestamp", "desc"));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        setAllPosts(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
+      });
+      return unsubscribe;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    getPosts();
+    if (user) {
+      getPosts();
+    }
   }, []);
 
   if (loading)

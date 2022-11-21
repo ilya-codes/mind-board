@@ -25,55 +25,64 @@ const Post = () => {
   const submitPost = async (e) => {
     e.preventDefault();
 
-    if (!post.description) {
-      toast.error("Description Field Empty", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
-      });
-      return;
-    }
+    try {
+      if (!post.description) {
+        toast.error("Description Field Empty", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+        return;
+      }
 
-    if (post.description > 300) {
-      toast.error("Description too long", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
-      });
-      return;
-    }
+      if (post.description > 300) {
+        toast.error("Description too long", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+        return;
+      }
 
-    if (post.hasOwnProperty("id")) {
-      const docRef = doc(db, "posts", post.id);
-      const updatedPost = { ...post, timestamp: serverTimestamp() };
-      await updateDoc(docRef, updatedPost);
-      return route.push("/");
-    } else {
-      const collectionRef = collection(db, "posts");
-      await addDoc(collectionRef, {
-        ...post,
-        timestamp: serverTimestamp(),
-        user: user.uid,
-        avatar: user.photoURL,
-        username: user.displayName,
-      });
-      setPost({ description: "" });
-      toast.success("Post has been made", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
-      });
-      return route.push("/");
+      if (post.hasOwnProperty("id")) {
+        const docRef = doc(db, "posts", post.id);
+        const updatedPost = { ...post, timestamp: serverTimestamp() };
+        await updateDoc(docRef, updatedPost);
+        return route.push("/");
+      } else {
+        const collectionRef = collection(db, "posts");
+        await addDoc(collectionRef, {
+          ...post,
+          timestamp: serverTimestamp(),
+          user: user.uid,
+          avatar: user.photoURL,
+          username: user.displayName,
+        });
+        setPost({ description: "" });
+        toast.success("Post has been made", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+        return route.push("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const checkUser = async () => {
-    if (loading) return;
-    if (!user) route.push("/auth/login");
-    if (routeData.id) {
-      setPost({ description: routeData.description, id: routeData.id });
+    try {
+      if (loading) return;
+      if (routeData.id) {
+        setPost({ description: routeData.description, id: routeData.id });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    checkUser();
+    if (user) {
+      checkUser();
+    }
   }, [user, loading]);
 
   return (

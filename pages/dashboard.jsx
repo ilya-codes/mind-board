@@ -1,6 +1,5 @@
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import {
   collection,
@@ -18,31 +17,38 @@ import { MdEditNote } from "react-icons/md";
 import AppContext from "../components/Context";
 
 const Dashboard = () => {
-  const route = useRouter();
   const [user, loading] = useAuthState(auth);
   const [posts, setPosts] = useState([]);
-
   const themeContext = useContext(AppContext);
   const isJapanese = themeContext.isJapanese;
 
   const getData = async () => {
-    if (loading) return;
-    if (!user) route.push("/auth/login");
-    const collectionRef = collection(db, "posts");
-    const q = query(collectionRef, where("user", "==", user?.uid));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-    return unsubscribe;
+    try {
+      if (loading) return;
+      const collectionRef = collection(db, "posts");
+      const q = query(collectionRef, where("user", "==", user?.uid));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+      return unsubscribe;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deletePost = async (id) => {
-    const docRef = doc(db, "posts", id);
-    await deleteDoc(docRef);
+    try {
+      const docRef = doc(db, "posts", id);
+      await deleteDoc(docRef);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    getData();
+    if (user) {
+      getData();
+    }
   }, [user, loading]);
 
   return (
