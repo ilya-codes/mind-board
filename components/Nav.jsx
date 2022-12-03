@@ -48,7 +48,7 @@ const Nav = () => {
           {isJapanese ? "マインドボード" : "MindBoard"}
         </h1>
       </Link>
-      <ul className="flex items-center gap-10 self-center">
+      <div className="flex items-center gap-10 self-center">
         {!user && (
           <div className="flex sm:flex-row-reverse">
             <Link href="/auth/login">
@@ -92,7 +92,7 @@ const Nav = () => {
             </div>
           </div>
         )}
-      </ul>
+      </div>
       <Menu open={menuOpen} handleMenu={handleMenu} />
     </nav>
   );
