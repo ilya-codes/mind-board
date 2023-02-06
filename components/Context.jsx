@@ -4,7 +4,7 @@ const AppContext = createContext(false);
 
 export const ContextProvider = ({ children }) => {
   const [dark, setDark] = useState(false);
-  const [isJapanese, setIsJapanese] = useState(true);
+  const [isJapanese, setIsJapanese] = useState(false);
 
   const darkHandler = () => {
     setDark(!dark);
